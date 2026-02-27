@@ -24,22 +24,20 @@ competition Competition;
 /*  already have configured your motors.                                     */
 /*---------------------------------------------------------------------------*/
 
-motor LeftMotorA = motor(PORT11, vex::ratio18_1, false);
-motor LeftMotorB = motor(PORT17, vex::ratio18_1, false);
-motor LeftMotorC = motor(PORT19, vex::ratio18_1, false);
+motor LeftMotorA = motor(PORT15, vex::ratio6_1, false);
+motor LeftMotorB = motor(PORT17, vex::ratio6_1, false);
+motor LeftMotorC = motor(PORT19, vex::ratio6_1, false);
 
-motor RightMotorA = motor(PORT12, vex::ratio18_1, true);
-motor RightMotorB = motor(PORT16, vex::ratio18_1, true);
-motor RightMotorC = motor(PORT18, vex::ratio18_1, true);
+motor RightMotorA = motor(PORT16, vex::ratio6_1, true);
+motor RightMotorB = motor(PORT18, vex::ratio6_1, true);
+motor RightMotorC = motor(PORT12, vex::ratio6_1, true);
 
 motor_group leftMotors = motor_group(LeftMotorA, LeftMotorB, LeftMotorC);
 motor_group rightMotors = motor_group(RightMotorA, RightMotorB, RightMotorC);
 
-motor topRoller = motor(PORT8, vex::ratio18_1, false);
-motor middleRoller = motor(PORT7, vex::ratio18_1, false);
-motor intake = motor(PORT9, vex::ratio18_1, false);
-
-
+motor topRoller = motor(PORT9, vex::ratio6_1, true);
+motor middleRoller = motor(PORT3, vex::ratio6_1, true);
+motor intake = motor(PORT1, vex::ratio6_1, false);
 
 controller controller1 = controller(primary);
 
@@ -70,7 +68,7 @@ leftMotors,
 rightMotors,
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-PORT1,
+PORT5,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
 3.25,
@@ -140,48 +138,48 @@ void pre_auton() {
   vexcodeInit();
   default_constants();
 
-  while(!auto_started){
-    Brain.Screen.clearScreen();
-    Brain.Screen.printAt(5, 20, "JAR Template v1.2.0");
-    Brain.Screen.printAt(5, 40, "Battery Percentage:");
-    Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
-    Brain.Screen.printAt(5, 80, "Chassis Heading Reading:");
-    Brain.Screen.printAt(5, 100, "%f", chassis.get_absolute_heading());
-    Brain.Screen.printAt(5, 120, "Selected Auton:");
-    switch(current_auton_selection){
-      case 0:
-        Brain.Screen.printAt(5, 140, "Auton 1");
-        break;
-      case 1:
-        Brain.Screen.printAt(5, 140, "Auton 2");
-        break;
-      case 2:
-        Brain.Screen.printAt(5, 140, "Auton 3");
-        break;
-      case 3:
-        Brain.Screen.printAt(5, 140, "Auton 4");
-        break;
-      case 4:
-        Brain.Screen.printAt(5, 140, "Auton 5");
-        break;
-      case 5:
-        Brain.Screen.printAt(5, 140, "Auton 6");
-        break;
-      case 6:
-        Brain.Screen.printAt(5, 140, "Auton 7");
-        break;
-      case 7:
-        Brain.Screen.printAt(5, 140, "Auton 8");
-        break;
-    }
-    if(Brain.Screen.pressing()){
-      while(Brain.Screen.pressing()) {}
-      current_auton_selection ++;
-    } else if (current_auton_selection == 8){
-      current_auton_selection = 0;
-    }
-    task::sleep(10);
-  }
+  // while(!auto_started){
+  //   Brain.Screen.clearScreen();
+  //   Brain.Screen.printAt(5, 20, "JAR Template v1.2.0");
+  //   Brain.Screen.printAt(5, 40, "Battery Percentage:");
+  //   Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
+  //   Brain.Screen.printAt(5, 80, "Chassis Heading Reading:");
+  //   Brain.Screen.printAt(5, 100, "%f", chassis.get_absolute_heading());
+  //   Brain.Screen.printAt(5, 120, "Selected Auton:");
+  //   switch(current_auton_selection){
+  //     case 0:
+  //       Brain.Screen.printAt(5, 140, "Auton 1");
+  //       break;
+  //     case 1:
+  //       Brain.Screen.printAt(5, 140, "Auton 2");
+  //       break;
+  //     case 2:
+  //       Brain.Screen.printAt(5, 140, "Auton 3");
+  //       break;
+  //     case 3:
+  //       Brain.Screen.printAt(5, 140, "Auton 4");
+  //       break;
+  //     case 4:
+  //       Brain.Screen.printAt(5, 140, "Auton 5");
+  //       break;
+  //     case 5:
+  //       Brain.Screen.printAt(5, 140, "Auton 6");
+  //       break;
+  //     case 6:
+  //       Brain.Screen.printAt(5, 140, "Auton 7");
+  //       break;
+  //     case 7:
+  //       Brain.Screen.printAt(5, 140, "Auton 8");
+  //       break;
+  //   }
+  //   if(Brain.Screen.pressing()){
+  //     while(Brain.Screen.pressing()) {}
+  //     current_auton_selection ++;
+  //   } else if (current_auton_selection == 8){
+  //     current_auton_selection = 0;
+  //   }
+  //   wait(10, msec);
+  // }
 }
 
 /**
@@ -192,9 +190,8 @@ void pre_auton() {
  */
 
 void autonomous(void) {
-  auto_started = true;
+  
   red_right();
-
 }
 
 /*---------------------------------------------------------------------------*/
@@ -206,6 +203,7 @@ void autonomous(void) {
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
+    
 bool matchloaderbool = false;
 bool armbool = false;
 
@@ -216,6 +214,8 @@ void usercontrol(void) {
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
 
+    
+
     chassis.control_arcade();
     matchloader.set(matchloaderbool);
     arm.set(armbool);
@@ -223,24 +223,23 @@ void usercontrol(void) {
   
     if (controller1.ButtonR1.pressing()) {
       intake.spin(forward, 100, percent);
-      middleRoller.spin(forward, 100, percent);
-
+      middleRoller.spin(reverse, 100, percent);
     }
 
     else if (controller1.ButtonR2.pressing()) { 
       intake.spin(reverse, 100, percent);
-      middleRoller.spin(reverse, 100, percent);
+      middleRoller.spin(forward, 100, percent);
 
     }
 
     else if (controller1.ButtonL1.pressing()) {
-      middleRoller.spin(reverse, 100, percent);
+      middleRoller.spin(forward, 100, percent);
       intake.spin(forward, 100, percent);
       topRoller.spin(reverse, 100, percent);
     }
 
     else if (controller1.ButtonL2.pressing()) { 
-      middleRoller.spin(reverse, 50, percent);
+      middleRoller.spin(forward, 65, percent);
       intake.spin(forward, 75, percent);
       topRoller.spin(forward, 100, percent);
 
@@ -255,13 +254,17 @@ void usercontrol(void) {
       matchloaderbool = !matchloaderbool;
       waitUntil(!(controller1.ButtonUp.pressing()));
       matchloader.set(matchloaderbool);
+      Brain.Screen.print(matchloaderbool);
     }
+
 
     if (controller1.ButtonX.pressing()) {
       armbool = !armbool;
       waitUntil(!(controller1.ButtonX.pressing()));
       arm.set(armbool); 
     }
+
+
     
       wait(20, msec); 
     }

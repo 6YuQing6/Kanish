@@ -9,6 +9,7 @@ extern brain Brain;
 
 extern digital_out matchloader;
 extern digital_out arm;
+extern digital_out aligner;
 
 extern motor intake;
 extern motor middleRoller;

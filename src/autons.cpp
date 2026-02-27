@@ -96,7 +96,7 @@ void odom_test(){
     Brain.Screen.printAt(5,60, "Heading: %f", chassis.get_absolute_heading());
     Brain.Screen.printAt(5,80, "ForwardTracker: %f", chassis.get_ForwardTracker_position());
     Brain.Screen.printAt(5,100, "SidewaysTracker: %f", chassis.get_SidewaysTracker_position());
-    task::sleep(20);
+    wait(20, msec);
   }
 }
 
@@ -127,20 +127,19 @@ void holonomic_odom_test(){
   chassis.holonomic_drive_to_pose(0, 18, 270);
   chassis.holonomic_drive_to_pose(0, 0, 0);
 }
-
-void red_right() {
-  intake.spin(fwd);
-  chassis.drive_distance(35);
-  chassis.turn_to_angle(135);
+void red_right(){
+  intake.spin(fwd,100,percent);
+  chassis.set_drive_constants(6,1.5,0,10,0);
+  chassis.drive_distance(12);
+  middleRoller.spin(fwd,100,percent);
+  chassis.turn_to_angle(-40);
+  chassis.set_drive_constants(3,1.5,0,10,0);
   chassis.drive_distance(14);
   matchloader.set(true);
-  chassis.turn_to_angle(180);
-  matchloader.set(false);
-  chassis.drive_distance(29);
-  intake.spin(fwd);
-  middleRoller.spin(fwd);
-  topRoller.spin(fwd);
-
-  
-
+  chassis.turn_to_angle(45);
+  chassis.set_drive_constants(10,1.5,0,10,0);
+  chassis.drive_distance(15);
+  middleRoller.spin(reverse,100,percent);
+  topRoller.spin(reverse,100,percent);
+  intake.spin(fwd,100,percent);
 }
