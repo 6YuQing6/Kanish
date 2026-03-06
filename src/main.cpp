@@ -36,7 +36,7 @@ motor_group leftMotors = motor_group(LeftMotorA, LeftMotorB, LeftMotorC);
 motor_group rightMotors = motor_group(RightMotorA, RightMotorB, RightMotorC);
 
 motor topRoller = motor(PORT9, vex::ratio6_1, true);
-motor middleRoller = motor(PORT3, vex::ratio6_1, true);
+motor middleRoller = motor(PORT3, vex::ratio6_1, false);
 motor intake = motor(PORT1, vex::ratio6_1, false);
 
 controller controller1 = controller(primary);
@@ -190,8 +190,8 @@ void pre_auton() {
  */
 
 void autonomous(void) {
-  
-  red_right();
+  drive_test();
+  // left_auton();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -216,40 +216,38 @@ void usercontrol(void) {
 
     
 
+    //descorcer code
     chassis.control_arcade();
     matchloader.set(matchloaderbool);
     arm.set(armbool);
 
-  
+    //intake 
     if (controller1.ButtonR1.pressing()) {
       intake.spin(forward, 100, percent);
-      middleRoller.spin(reverse, 100, percent);
+      middleRoller.spin(forward, 100, percent);
     }
-
+    //low goal
     else if (controller1.ButtonR2.pressing()) { 
       intake.spin(reverse, 100, percent);
-      middleRoller.spin(forward, 100, percent);
+      middleRoller.spin(reverse, 100, percent);
 
-    }
-
+    }//middle goal
     else if (controller1.ButtonL1.pressing()) {
-      middleRoller.spin(forward, 100, percent);
+      middleRoller.spin(reverse, 100, percent);
       intake.spin(forward, 100, percent);
       topRoller.spin(reverse, 100, percent);
-    }
-
+    }//top goal
     else if (controller1.ButtonL2.pressing()) { 
-      middleRoller.spin(forward, 65, percent);
+      middleRoller.spin(reverse, 65, percent);
       intake.spin(forward, 75, percent);
       topRoller.spin(forward, 100, percent);
-
-    }
+    }//if nothing is pressed, bot stops working 
     else {
       intake.stop();
       middleRoller.stop();
       topRoller.stop();
     }
-
+    //m
     if (controller1.ButtonUp.pressing()) {
       matchloaderbool = !matchloaderbool;
       waitUntil(!(controller1.ButtonUp.pressing()));

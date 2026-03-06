@@ -41,10 +41,8 @@ void odom_constants(){
  */
 
 void drive_test(){
-  chassis.drive_distance(6);
-  chassis.drive_distance(12);
-  chassis.drive_distance(18);
-  chassis.drive_distance(-36);
+  chassis.drive_distance(40);
+  chassis.drive_distance(-40);
 }
 
 /**
@@ -127,6 +125,35 @@ void holonomic_odom_test(){
   chassis.holonomic_drive_to_pose(0, 18, 270);
   chassis.holonomic_drive_to_pose(0, 0, 0);
 }
+
+void skills() {
+  matchloader.set(true);
+  intake.spin(reverse, 100, percent);
+  chassis.drive_max_voltage = 12;
+  chassis.drive_distance(15);
+  chassis.drive_distance(-5);
+}
+
+void left_auton() {
+  intake.spin(fwd,100,percent);
+  // chassis.drive_max_voltage = 10;
+  chassis.drive_distance(6.7);
+  chassis.turn_to_angle(-40);
+  chassis.drive_distance(20.57);
+  intake.spin(fwd, 100, percent); 
+  chassis.turn_to_angle(45);
+  chassis.drive_distance(12);
+  intake.spin(fwd,100,percent);
+  chassis.drive_distance(-43.17);
+  chassis.turn_to_angle(180);
+  matchloader.set(false);
+  chassis.drive_distance(6);
+  intake.spin(fwd,100,percent);
+  chassis.turn_to_angle(180);
+  chassis.drive_distance(27);
+  topRoller.spin(fwd,100,percent);
+}
+
 void red_right(){
   intake.spin(fwd,100,percent);
   chassis.set_drive_constants(6,1.5,0,10,0);

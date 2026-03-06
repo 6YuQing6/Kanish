@@ -15,3 +15,5 @@ void odom_test();
 void tank_odom_test();
 void holonomic_odom_test();
 void red_right();
+void left_auton();
+void skills();
