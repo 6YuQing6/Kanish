@@ -10,7 +10,7 @@
 
 void default_constants(){
   // Each constant set is in the form of (maxVoltage, kP, kI, kD, startI).
-  chassis.set_drive_constants(10, 1.5, 0, 10, 0);
+  chassis.set_drive_constants(12, 1.5, 0, 10, 0);
   chassis.set_heading_constants(6, .4, 0, 1, 0);
   chassis.set_turn_constants(12, .4, .03, 3, 15);
   chassis.set_swing_constants(12, .3, .001, 2, 15);
@@ -155,18 +155,64 @@ void left_auton() {
 }
 
 void red_right(){
+  // grabs the three balls in center
   intake.spin(fwd,100,percent);
-  chassis.set_drive_constants(6,1.5,0,10,0);
-  chassis.drive_distance(12);
-  middleRoller.spin(fwd,100,percent);
-  chassis.turn_to_angle(-40);
-  chassis.set_drive_constants(3,1.5,0,10,0);
-  chassis.drive_distance(14);
-  matchloader.set(true);
+  middleRoller.spin(fwd, 100, percent);
+  chassis.drive_max_voltage = 10;
+  // chassis.drive_max_voltage = 10;
+  chassis.drive_distance(24);
   chassis.turn_to_angle(45);
-  chassis.set_drive_constants(10,1.5,0,10,0);
-  chassis.drive_distance(15);
+  chassis.drive_distance(48);
+  chassis.drive_max_voltage = 3;
+  matchloader.set(true);
+  chassis.drive_distance(16);
+  chassis.drive_max_voltage = 10;
+  matchloader.set(false);
+  wait(2, sec);
+
+  // // intake.spin(fwd, 100, percent); 
+  // scores middle bottom
+  chassis.turn_to_angle(-45);
+  chassis.drive_distance(48); // 12
+  intake.spin(reverse, 100, percent);
   middleRoller.spin(reverse,100,percent);
-  topRoller.spin(reverse,100,percent);
-  intake.spin(fwd,100,percent);
+  wait(3, sec);
+  chassis.drive_max_voltage = 12;
+  // goes towards long goal, matchloads ball
+  chassis.drive_distance(-120);
+  chassis.turn_to_angle(180);
+  matchloader.set(true);
+  chassis.drive_distance(15);
+  chassis.drive_distance(-20);
+  chassis.turn_to_angle(0);
+  chassis.drive_distance(40);
+  // // intake.spin(fwd,100,percent);
+  // chassis.drive_distance(-43.17);
+  // chassis.turn_to_angle(180);
+  // matchloader.set(false);
+  // chassis.drive_distance(6);
+  // // intake.spin(fwd,100,percent);
+  // chassis.turn_to_angle(180);
+  // chassis.drive_distance(27);
+  // intake.spin(reverse,100,percent);
+  // middleRoller.spin(reverse,100,percent);
+
+
+
+
+
+  // intake.spin(fwd,100,percent);
+  // chassis.set_drive_constants(6,1.5,0,10,0);
+  // chassis.drive_distance(12);
+  // middleRoller.spin(fwd,100,percent);
+  // chassis.turn_to_angle(-40);
+  // chassis.set_drive_constants(3,1.5,0,10,0);
+  // chassis.drive_distance(14);
+  // matchloader.set(true);
+  // chassis.turn_to_angle(45);
+  // chassis.set_drive_constants(10,1.5,0,10,0);
+  // chassis.drive_distance(15);
+  // middleRoller.spin(reverse,100,percent);
+  // topRoller.spin(reverse,100,percent);
+  // intake.spin(fwd,100,percent);
 }
