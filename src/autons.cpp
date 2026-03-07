@@ -163,56 +163,40 @@ void red_right(){
   chassis.drive_distance(24);
   chassis.turn_to_angle(45);
   chassis.drive_distance(48);
+  //Bot will intake the balls 
   chassis.drive_max_voltage = 3;
   matchloader.set(true);
+  //matchloader closes fully 
   chassis.drive_distance(16);
+  chassis.drive_distance(0);
   chassis.drive_max_voltage = 10;
+  //matchloader will go up
   matchloader.set(false);
-  wait(2, sec);
 
-  // // intake.spin(fwd, 100, percent); 
   // scores middle bottom
   chassis.turn_to_angle(-45);
   chassis.drive_distance(48); // 12
-  intake.spin(reverse, 100, percent);
-  middleRoller.spin(reverse,100,percent);
+  intake.spin(reverse, 50, percent);
+  middleRoller.spin(reverse,50,percent);
   wait(3, sec);
   chassis.drive_max_voltage = 12;
   // goes towards long goal, matchloads ball
-  chassis.drive_distance(-120);
+  intake.spin(forward, 100, percent);
+  middleRoller.spin(forward, 100, percent);
+  chassis.drive_distance(-154);
   chassis.turn_to_angle(180);
   matchloader.set(true);
-  chassis.drive_distance(15);
-  chassis.drive_distance(-20);
+  wait(0.5, sec);
+  chassis.drive_max_voltage = 8;
+  chassis.drive_timeout = 100;
+  chassis.drive_distance(43);
+  wait(2, sec);
+  chassis.drive_max_voltage = 12;
+  chassis.drive_distance(-30);
   chassis.turn_to_angle(0);
-  chassis.drive_distance(40);
-  // // intake.spin(fwd,100,percent);
-  // chassis.drive_distance(-43.17);
-  // chassis.turn_to_angle(180);
-  // matchloader.set(false);
-  // chassis.drive_distance(6);
-  // // intake.spin(fwd,100,percent);
-  // chassis.turn_to_angle(180);
-  // chassis.drive_distance(27);
-  // intake.spin(reverse,100,percent);
-  // middleRoller.spin(reverse,100,percent);
-
-
-
-
-
-  // intake.spin(fwd,100,percent);
-  // chassis.set_drive_constants(6,1.5,0,10,0);
-  // chassis.drive_distance(12);
-  // middleRoller.spin(fwd,100,percent);
-  // chassis.turn_to_angle(-40);
-  // chassis.set_drive_constants(3,1.5,0,10,0);
-  // chassis.drive_distance(14);
-  // matchloader.set(true);
-  // chassis.turn_to_angle(45);
-  // chassis.set_drive_constants(10,1.5,0,10,0);
-  // chassis.drive_distance(15);
-  // middleRoller.spin(reverse,100,percent);
-  // topRoller.spin(reverse,100,percent);
-  // intake.spin(fwd,100,percent);
+  matchloader.set(false);
+  chassis.drive_distance(60);
+  intake.spin(forward, 100, percent);
+  middleRoller.spin(reverse, 100, percent);
+  topRoller.spin(forward, 100, percent);
 }

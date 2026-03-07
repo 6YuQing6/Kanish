@@ -36,7 +36,7 @@ motor_group leftMotors = motor_group(LeftMotorA, LeftMotorB, LeftMotorC);
 motor_group rightMotors = motor_group(RightMotorA, RightMotorB, RightMotorC);
 
 motor topRoller = motor(PORT9, vex::ratio6_1, true);
-motor middleRoller = motor(PORT3, vex::ratio6_1, false);
+motor middleRoller = motor(PORT3, vex::ratio18_1, false);
 motor intake = motor(PORT1, vex::ratio6_1, false);
 
 controller controller1 = controller(primary);
