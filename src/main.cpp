@@ -191,7 +191,8 @@ void pre_auton() {
 
 void autonomous(void) {
   // drive_test();
-  red_right();
+  left_auton();
+  // red_right();
 }
 
 /*---------------------------------------------------------------------------*/

@@ -135,23 +135,53 @@ void skills() {
 }
 
 void left_auton() {
+    // grabs the three balls in center
   intake.spin(fwd,100,percent);
+  middleRoller.spin(fwd, 100, percent);
+  chassis.drive_max_voltage = 10;
   // chassis.drive_max_voltage = 10;
-  chassis.drive_distance(6.7);
-  chassis.turn_to_angle(-40);
-  chassis.drive_distance(20.57);
-  intake.spin(fwd, 100, percent); 
-  chassis.turn_to_angle(45);
-  chassis.drive_distance(12);
-  intake.spin(fwd,100,percent);
-  chassis.drive_distance(-43.17);
-  chassis.turn_to_angle(180);
+  chassis.drive_distance(24);
+  chassis.turn_to_angle(-45);
+  chassis.drive_distance(48);
+  //Bot will intake the balls 
+  chassis.drive_max_voltage = 3;
+  matchloader.set(true);
+  //matchloader closes fully 
+  chassis.drive_distance(16);
+  chassis.drive_distance(0);
+  chassis.drive_max_voltage = 10;
+  //matchloader will go up
   matchloader.set(false);
-  chassis.drive_distance(6);
-  intake.spin(fwd,100,percent);
-  chassis.turn_to_angle(180);
-  chassis.drive_distance(27);
-  topRoller.spin(fwd,100,percent);
+
+  // scores middle bottom
+  chassis.turn_to_angle(45);
+  chassis.drive_distance(48); // 12
+  intake.spin(forward, 60, percent);
+  middleRoller.spin(reverse,60,percent);
+  topRoller.spin(reverse, 60, percent);
+  wait(3, sec);
+  chassis.drive_max_voltage = 12;
+  // goes towards long goal, matchloads ball
+  intake.spin(forward, 100, percent);
+  middleRoller.spin(forward, 100, percent);
+  chassis.drive_distance(-156);
+  // intake.spin(fwd,100,percent);
+  // // chassis.drive_max_voltage = 10;
+  // chassis.drive_distance(6.7);
+  // chassis.turn_to_angle(-40);
+  // chassis.drive_distance(20.57);
+  // intake.spin(fwd, 100, percent); 
+  // chassis.turn_to_angle(45);
+  // chassis.drive_distance(12);
+  // intake.spin(fwd,100,percent);
+  // chassis.drive_distance(-43.17);
+  // chassis.turn_to_angle(180);
+  // matchloader.set(false);
+  // chassis.drive_distance(6);
+  // intake.spin(fwd,100,percent);
+  // chassis.turn_to_angle(180);
+  // chassis.drive_distance(27);
+  // topRoller.spin(fwd,100,percent);
 }
 
 void red_right(){
@@ -183,19 +213,25 @@ void red_right(){
   // goes towards long goal, matchloads ball
   intake.spin(forward, 100, percent);
   middleRoller.spin(forward, 100, percent);
-  chassis.drive_distance(-154);
+  chassis.drive_distance(-156);
   chassis.turn_to_angle(180);
   matchloader.set(true);
   wait(0.5, sec);
   chassis.drive_max_voltage = 8;
-  chassis.drive_timeout = 100;
-  chassis.drive_distance(43);
+  // chassis.drive_timeout = 100;
+  // // drives to matchload
+  // chassis.drive_settle_time = 50;
+  chassis.drive_distance(45);
+  // chassis.drive_distance(-5);
+  // chassis.drive_distance(5);
+  // chassis.drive_distance(-5);
+  // chassis.drive_distance(5);
   wait(2, sec);
-  chassis.drive_max_voltage = 12;
+  chassis.drive_max_voltage = 10;
   chassis.drive_distance(-30);
   chassis.turn_to_angle(0);
   matchloader.set(false);
-  chassis.drive_distance(60);
+  chassis.drive_distance(45);
   intake.spin(forward, 100, percent);
   middleRoller.spin(reverse, 100, percent);
   topRoller.spin(forward, 100, percent);
