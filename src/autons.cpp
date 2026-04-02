@@ -151,7 +151,6 @@ void left_auton() {
   chassis.drive_distance(0);
   chassis.drive_max_voltage = 10;
   //matchloader will go up
-  matchloader.set(false);
 
   // scores middle bottom
   chassis.turn_to_angle(45);
@@ -231,7 +230,7 @@ void red_right(){
   chassis.drive_distance(-30);
   chassis.turn_to_angle(0);
   matchloader.set(false);
-  chassis.drive_distance(45);
+  chassis.drive_distance(50);
   intake.spin(forward, 100, percent);
   middleRoller.spin(reverse, 100, percent);
   topRoller.spin(forward, 100, percent);

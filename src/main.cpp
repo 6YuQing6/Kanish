@@ -191,8 +191,8 @@ void pre_auton() {
 
 void autonomous(void) {
   // drive_test();
-  left_auton();
-  // red_right();
+  // left_auton();
+  red_right();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -224,23 +224,23 @@ void usercontrol(void) {
 
     //intake 
     if (controller1.ButtonR1.pressing()) {
-      intake.spin(forward, 100, percent);
+      intake.spin(reverse, 100, percent);
       middleRoller.spin(forward, 100, percent);
     }
     //low goal
     else if (controller1.ButtonR2.pressing()) { 
-      intake.spin(reverse, 100, percent);
+      intake.spin(forward, 100, percent);
       middleRoller.spin(reverse, 100, percent);
 
     }//middle goal
     else if (controller1.ButtonL1.pressing()) {
       middleRoller.spin(reverse, 100, percent);
-      intake.spin(forward, 100, percent);
+      intake.spin(reverse, 100, percent);
       topRoller.spin(reverse, 100, percent);
     }//top goal
     else if (controller1.ButtonL2.pressing()) { 
       middleRoller.spin(reverse, 65, percent);
-      intake.spin(forward, 75, percent);
+      intake.spin(reverse, 75, percent);
       topRoller.spin(forward, 100, percent);
     }//if nothing is pressed, bot stops working 
     else {
